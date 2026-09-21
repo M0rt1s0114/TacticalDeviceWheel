@@ -1,0 +1,74 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!--
+    Tactical Device Wheel - SPT 4.1.5 port.
+
+    Point GameDir at your SPT install (the folder that contains EscapeFromTarkov.exe).
+    Everything else is derived from it. Reference assemblies are taken from the installed
+    game/SPT assemblies; no NuGet packages are required.
+
+      dotnet build -c Release -p:GameDir="D:\SPT"
+
+    Note: the sources use C# 13 features (field keyword, params ReadOnlySpan<T>), so a
+    compiler that supports C# 13 is required (Roslyn 4.11+ / .NET SDK 9+, or a newer
+    Roslyn from Visual Studio, see README).
+  -->
+
+  <PropertyGroup>
+    <GameDir Condition="'$(GameDir)' == ''">E:\Games\EscapeFromTarkov_SPT4.1</GameDir>
+    <ManagedDir>$(GameDir)\EscapeFromTarkov_Data\Managed</ManagedDir>
+    <CoreDir>$(GameDir)\BepInEx\core</CoreDir>
+    <SptDir>$(GameDir)\BepInEx\plugins\spt</SptDir>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <AssemblyName>TacticalDeviceWheel</AssemblyName>
+    <RootNamespace>TacticalDeviceWheel</RootNamespace>
+    <LangVersion>latest</LangVersion>
+    <Nullable>annotations</Nullable>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <Version>0.4.1-beta1</Version>
+    <AssemblyVersion>0.4.1.0</AssemblyVersion>
+    <FileVersion>0.4.1.0</FileVersion>
+    <Product>Tactical Device Wheel</Product>
+    <AssemblyTitle>Tactical Device Wheel</AssemblyTitle>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <OutputPath>dist\</OutputPath>
+    <DebugType>none</DebugType>
+    <DebugSymbols>false</DebugSymbols>
+    <Optimize>true</Optimize>
+    <NoWarn>CS8632;CS0436;CS1701;CS0618</NoWarn>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="src\**\*.cs" />
+  </ItemGroup>
+
+  <!-- Ship-ready output: DLL plus the data/assets the plugin loads from its own folder. -->
+  <ItemGroup>
+    <None Include="devices.json" CopyToOutputDirectory="PreserveNewest" />
+    <None Include="resources\**\*" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="BepInEx"><HintPath>$(CoreDir)\BepInEx.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="0Harmony"><HintPath>$(CoreDir)\0Harmony.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="Assembly-CSharp"><HintPath>$(ManagedDir)\Assembly-CSharp.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="UnityEngine"><HintPath>$(ManagedDir)\UnityEngine.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="UnityEngine.CoreModule"><HintPath>$(ManagedDir)\UnityEngine.CoreModule.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="UnityEngine.UI"><HintPath>$(ManagedDir)\UnityEngine.UI.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="UnityEngine.UIModule"><HintPath>$(ManagedDir)\UnityEngine.UIModule.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="UnityEngine.TextRenderingModule"><HintPath>$(ManagedDir)\UnityEngine.TextRenderingModule.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="UnityEngine.InputLegacyModule"><HintPath>$(ManagedDir)\UnityEngine.InputLegacyModule.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="UnityEngine.ImageConversionModule"><HintPath>$(ManagedDir)\UnityEngine.ImageConversionModule.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="Unity.TextMeshPro"><HintPath>$(ManagedDir)\Unity.TextMeshPro.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="Comfort"><HintPath>$(ManagedDir)\Comfort.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="Comfort.Unity"><HintPath>$(ManagedDir)\Comfort.Unity.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="Sirenix.Serialization"><HintPath>$(ManagedDir)\Sirenix.Serialization.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="Newtonsoft.Json"><HintPath>$(ManagedDir)\Newtonsoft.Json.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="spt-common"><HintPath>$(SptDir)\spt-common.dll</HintPath><Private>false</Private></Reference>
+  </ItemGroup>
+
+</Project>

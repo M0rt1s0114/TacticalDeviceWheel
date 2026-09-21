@@ -1,0 +1,12 @@
+# Build output
+dist/
+bin/
+obj/
+
+# Release staging
+release/
+
+# IDE
+.vs/
+.idea/
+*.user
