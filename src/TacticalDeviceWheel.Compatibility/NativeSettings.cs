@@ -43,7 +43,7 @@ internal static class NativeSettings
 	private static bool modeLogged;
 
 	/// <summary>
-	/// 0.4.1-beta1 诊断：Awake 阶段设置还没加载完时 Mode 会是 Unknown；
+	/// 0.4.1 诊断：Awake 阶段设置还没加载完时 Mode 会是 Unknown；
 	/// 这里在第一次真正解析出结果时记一条日志，方便确认战局内是否生效。
 	/// </summary>
 	public static bool IsToggle
@@ -90,7 +90,7 @@ internal static class NativeSettings
 	}
 	private static bool bindingsDiagDone;
 
-	/// <summary>0.4.1-beta1 诊断：把按键绑定路径逐层打出来，便于定位 HasPlainTBinding 失败原因。</summary>
+	/// <summary>0.4.1 诊断：把按键绑定路径逐层打出来，便于定位 HasPlainTBinding 失败原因。</summary>
 	private static void BindingsDiag()
 	{
 		if (bindingsDiagDone)

@@ -70,7 +70,7 @@ src/
   TacticalDeviceWheel.UI/      轮盘绘制（扇区网格、Canvas、图标缓存）
 ```
 
-## 0.4.1-beta1 变更
+## 0.4.1 变更
 
 ### API 移植：SPT 4.0.13 → SPT 4.1.5
 
@@ -120,6 +120,9 @@ src/
   操作，是开轮盘路径上最大的一次停顿。
 - 每次打开时的信息级日志（`SCAN device=`、`Capability mapping`、`Capability icon cached`、
   `Loading capability icon`、`Icon loaded successfully`、`Scan report saved`）改为受 `DebugLogging` 控制。
+- `Flashlight / EnableStrobe` 默认值改为**关闭**，且只有在该项开启时才会给设备添加白光爆闪扇区。
+  默认情况下轮盘里不存在爆闪条目，无法误选；若在爆闪进行中关闭该项，正在进行的爆闪会立即停止并恢复
+  此前状态。
 - 一次性诊断信息（受 `DebugLogging` 控制）：输入门槛的各项取值、每个 `ECommand` 首次出现、
   解析出的战术设备输入模式、以及战术按键绑定路径的完整转储。
 
@@ -151,7 +154,7 @@ src/
 | Input / CenterDeadZone | 0.2 | 轮盘中心死区 |
 | Input / MouseSensitivity | 0.1 | 鼠标到选择向量的增益 |
 | UI / Scale、FunctionIconScale、DeviceIconScale | 1 | 轮盘与图标尺寸 |
-| Flashlight / EnableStrobe、StrobeFrequencyHz | true、4 | 白光爆闪条目与频率 |
+| Flashlight / EnableStrobe、StrobeFrequencyHz | **false**、4 | 开启时才向轮盘添加白光爆闪扇区；关闭时不存在该扇区。频率仅在开启时生效 |
 | Rangefinder / ShowReadout、ReadoutRefreshHz | true、4 | 轮盘内的实时测距读数 |
 | Compatibility / ShowUnknownModes | true | 未映射设备以数字模式显示 |
 

@@ -37,7 +37,7 @@ internal sealed class ScanDiagnostics
 			string json = JsonConvert.SerializeObject((object)new
 			{
 				schemaVersion = 5,
-				tdwVersion = "0.4.1-beta1",
+				tdwVersion = "0.4.1",
 				target = "SPT 4.1.5 / EFT 40743",
 				timestampUtc = DateTime.UtcNow.ToString("O"),
 				pluginPath = ((BaseUnityPlugin)plugin).Info.Location,

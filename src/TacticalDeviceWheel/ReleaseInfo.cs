@@ -6,7 +6,7 @@ internal static class ReleaseInfo
 
 	public const string Name = "Tactical Device Wheel";
 
-	public const string Version = "0.4.1-beta1";
+	public const string Version = "0.4.1";
 
 	public const string Author = "巡怀浊 / xunhuaizhuo";
 

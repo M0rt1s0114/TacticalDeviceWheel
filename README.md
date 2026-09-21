@@ -78,7 +78,7 @@ src/
   TacticalDeviceWheel.UI/      radial menu rendering (wedge meshes, canvas, icon cache)
 ```
 
-## Changes in 0.4.1-beta1
+## Changes in 0.4.1
 
 ### API port: SPT 4.0.13 → SPT 4.1.5
 
@@ -135,6 +135,10 @@ lost the argument.
 - Per-open informational logs (`SCAN device=`, `Capability mapping`, `Capability icon cached`,
   `Loading capability icon`, `Icon loaded successfully`, `Scan report saved`) now go through
   `DebugLogging` instead of always being printed.
+- `Flashlight / EnableStrobe` now defaults to **off**, and the white-light strobe sector is only added to
+  the wheel while that option is enabled. With the default, no strobe entry exists and cannot be selected by
+  accident; if it is switched off while a strobe is running, the running strobe is stopped and its previous
+  state restored.
 - One-shot diagnostics behind `DebugLogging`: input gate results, the first occurrence of each
   `ECommand`, the resolved tactical input mode, and a dump of the tactical key binding path.
 
@@ -170,7 +174,7 @@ behaviour identical:
 | Input / CenterDeadZone | 0.2 | Radial dead zone |
 | Input / MouseSensitivity | 0.1 | Mouse-to-selection gain |
 | UI / Scale, FunctionIconScale, DeviceIconScale | 1 | Wheel and icon sizing |
-| Flashlight / EnableStrobe, StrobeFrequencyHz | true, 4 | White-light strobe entry and its rate |
+| Flashlight / EnableStrobe, StrobeFrequencyHz | **false**, 4 | While enabled, adds the white-light strobe sector to the wheel; while disabled the sector is not created. Rate applies when enabled |
 | Rangefinder / ShowReadout, ReadoutRefreshHz | true, 4 | Live rangefinder readout in the wheel |
 | Compatibility / ShowUnknownModes | true | Show unmapped devices as numbered modes |
 

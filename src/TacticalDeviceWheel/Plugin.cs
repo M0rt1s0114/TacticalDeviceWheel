@@ -13,7 +13,7 @@ using UnityEngine;
 
 namespace TacticalDeviceWheel;
 
-[BepInPlugin("com.xunhuaizhuo.tdw", "Tactical Device Wheel 0.4.1-beta1", "0.4.1")]
+[BepInPlugin("com.xunhuaizhuo.tdw", "Tactical Device Wheel", "0.4.1")]
 [BepInProcess("EscapeFromTarkov.exe")]
 [BepInDependency("com.SPT.core")]
 public sealed class Plugin : BaseUnityPlugin
@@ -70,7 +70,7 @@ public sealed class Plugin : BaseUnityPlugin
 			Input = new InputController(this);
 			harmony = new Harmony("com.xunhuaizhuo.tdw");
 			harmony.PatchAll(typeof(Plugin).Assembly);
-			LogInfo("TDW 0.4.1-beta1 loaded. SPT 4.1.5 / EFT 0.16.9.40743. Native Hold bypass enabled.");
+			LogInfo("TDW 0.4.1 loaded. SPT 4.1.5 / EFT 0.16.9.40743. Native Hold bypass enabled.");
 			LogInfo("TDW root: " + RootPath + ". Scan reports are always enabled. LMB toggles without closing; RMB closes; CloseOnTRelease is configurable.");
 			LogInfo("TDW DLL: " + Info.Location + "; assembly=" + typeof(Plugin).Assembly.GetName().Version?.ToString() + "; MVID=" + typeof(Plugin).Module.ModuleVersionId);
 			LogInfo("TDW FEATURES: 功能图标=" + Options.FunctionIconScale.Value + "; 设备图标=" + Options.DeviceIconScale.Value + "; 手电爆闪选项=" + Options.EnableStrobe.Value + " / " + Options.StrobeFrequency.Value + " Hz; 动态测距=" + Options.EnableRangeReadout.Value + " / " + Options.RangeReadoutFrequency.Value + " Hz. F12 新增 6 项配置。");
@@ -160,7 +160,7 @@ public sealed class Plugin : BaseUnityPlugin
 
 	internal void Fault(Exception e)
 	{
-		// 0.4.1-beta1: 瞬时异常（UI/扫描）不再一次性永久熔断，避免一次偶发 NRE 让整个 mod 停摆。
+		// 0.4.1: 瞬时异常（UI/扫描）不再一次性永久熔断，避免一次偶发 NRE 让整个 mod 停摆。
 		// 连续 50 次才硬禁用并卸载补丁，既保留兜底也避免日志刷屏。
 		faultCount++;
 		if (faultCount <= 3 || faultCount % 10 == 0)
